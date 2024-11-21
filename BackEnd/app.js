@@ -4,11 +4,12 @@ require("dotenv").config();
 require("./connection/conn.js");
 const User=require("./routes/user.js")
 const Books =require("./routes/book.js");
-
+const Favourite = require("./routes/favourite.js");
 app.use(express.json());
 //routs 
 app.use("/api/v1",User);
 app.use("/api/v1",Books);
+app.use("/api/v1",Favourite);
 //
 // app.get("/", (req,res)=>{
 //     res.send("hello from backend")
