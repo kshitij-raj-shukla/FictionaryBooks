@@ -6,16 +6,34 @@ const User = require("../models/user");
 router.put("/add-to-favourite",authenticateToken ,async(req,res)=>{
     try{
         const {bookid, id}=req.headers;
-        const userData = await User.findById(bookid);
+        const userData = await User.findById(id);
         const isBookFavorite = userData.favourites.includes(bookid);
         if(isBookFavorite){
-            return res.status(400).json({ message: "Book is already in your favourites" });
+            return res.status(200).json({ message: "Book is already in your favourites" });
         }
-        await User.findById(id,{$push:{favourites: [bookid]}});
-        return res.status(400).json({message:"Book added in favourites"});
+        await User.findByIdAndUpdate(id,{$push:{favourites: bookid}});
+        return res.status(200).json({message:"Book added in favourites"});
     }catch(error){
+        console.log(error);
         res.status(500).json({ message: "Internal server error" });
     }
-})
+});
+
+//delete book from favorites
+router.delete("/remove-from-favourite",authenticateToken ,async(req,res)=>{
+    try{
+        const {bookid, id}=req.headers;
+        const userData = await User.findById(id);
+        const isBookFavorite = userData.favourites.includes(bookid);
+        if(isBookFavorite){
+            await User.findByIdAndUpdate(id,{$pull:{favourites: bookid}});
+            // return res.status(200).json({ message: "Book is already in your favourites" });
+        }
+        return res.status(200).json({message:"Book removed from favourites"});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 module.exports = router;
