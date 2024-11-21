@@ -37,7 +37,7 @@ router.delete("/remove-from-favourite",authenticateToken ,async(req,res)=>{
 });
 
 //get favrait book of a particular user
-router.get("/get-favourite",authenticateToken,async(res,req)=>{
+router.get("/get-favourite",authenticateToken,async(req,res)=>{
     try{
         const {id}=req.headers;
         const userData=await User.findById(id).populate("favourites");
@@ -47,7 +47,7 @@ router.get("/get-favourite",authenticateToken,async(res,req)=>{
             data:favouriteBooks,
         }) 
     }catch{
-        console.log(error);
+        // console.log(error);
         res.status(500).json({ message: "Internal server error" });
     }
 })
