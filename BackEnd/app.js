@@ -2,11 +2,13 @@ const express=require ("express");
 const app= express();
 require("dotenv").config();
 require("./connection/conn.js");
-const user=require("./routes/user.js")
+const User=require("./routes/user.js")
+const Books =require("./routes/book.js");
 
-app.use(express.json())
+app.use(express.json());
 //routs 
-app.use("/api/v1",user);
+app.use("/api/v1",User);
+app.use("/api/v1",Books);
 //
 // app.get("/", (req,res)=>{
 //     res.send("hello from backend")
