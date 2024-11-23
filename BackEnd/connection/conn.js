@@ -8,4 +8,4 @@ const conn=async()=>{
         console.log(error);
     };
 };
-conn();
+conn(); 
