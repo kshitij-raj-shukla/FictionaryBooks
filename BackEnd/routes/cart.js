@@ -28,7 +28,7 @@ router.put("/add-to-cart", authenticateToken,async(req,res)=>{
 })
 
 //delete book from cart
-router.put("/remove-from-cart",authenticateToken ,async(req,res)=>{
+router.put("/remove-from-cart/:bookid",authenticateToken ,async(req,res)=>{
     try{
         const {id}=req.headers;
         const {bookid}=req.params;
@@ -46,6 +46,19 @@ router.put("/remove-from-cart",authenticateToken ,async(req,res)=>{
         console.log(error);
         res.status(500).json({ message: "Internal server error" });
     }
+    // try{
+    //     const {bookid, id}=req.headers;
+    //     const userData = await User.findById(id);
+    //     const isBookincart = userData.cart.includes(bookid);
+    //     if(isBookincart){
+    //         await User.findByIdAndUpdate(id,{$pull:{cart: bookid}});
+    //         // return res.status(200).json({ message: "Book is already in your favourites" });
+    //     }
+    //     return res.status(200).json({message:"Book removed from cart"});
+    // }catch(error){
+    //     console.log(error);
+    //     res.status(500).json({ message: "Internal server error" });
+    // }
 });
 
 router.get("/get-user-cart",authenticateToken,async(req,res)=>{
@@ -55,9 +68,9 @@ router.get("/get-user-cart",authenticateToken,async(req,res)=>{
         const cart = userData.cart.reverse();
         return res.json({
             status:"Success",
-            data:favouriteBooks,
+            data:cart,
         }) 
-    }catch{
+    }catch(error){
         console.log(error);
         res.status(500).json({ message: "Internal server error" });
     }

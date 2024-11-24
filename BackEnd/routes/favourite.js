@@ -46,7 +46,7 @@ router.get("/get-favourite",authenticateToken,async(req,res)=>{
             status:"Success",
             data:favouriteBooks,
         }) 
-    }catch{
+    }catch(error){
         // console.log(error);
         res.status(500).json({ message: "Internal server error" });
     }
