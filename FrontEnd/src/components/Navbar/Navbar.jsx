@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link to="/SignUp" className='px-4 py-1 bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-800 hover:text-white transition-all duration-300'>SignUp</Link>
 
           </div>
-          <button className='text-white text-2xl hover:text-zinc-400'
+          <button className='block md:hidden text-white text-2xl hover:text-zinc-400'
             onClick={() =>
               MobileNav === "hidden"
                 ? setMobileNav("block")

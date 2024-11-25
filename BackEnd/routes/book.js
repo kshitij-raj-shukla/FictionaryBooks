@@ -73,7 +73,7 @@ router.get("/get-book",async(req,res)=>{
     console.log(error);
     return res.status(500).json({message:"Internal server error"});
   }
-})
+}) 
 
 //get recent books
 router.get("/get-recent-books",async(req,res)=>{

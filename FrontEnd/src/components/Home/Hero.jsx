@@ -7,7 +7,7 @@ function Hero() {
             <div className='w-full mb-12 lg:w-3/6 md:mb-0 flex flex-col item-center lg:item-strat justify-center'>
                 <h1 className="text-4xl lg:text-6xl font-semibold text-yellow-100 text-center lg:text-left">
                     Discover Your Next Great Read
-                </h1>
+                </h1> 
                 <p className="mt-4 text-xl text-zinc-300 text-center lg:text-left">
                     Uncover captivating stories, enriching knowledge, and endless inspiration in our curated collection of books
                 </p>
