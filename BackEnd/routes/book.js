@@ -64,7 +64,7 @@ router.delete("/delete-book",async(req,res)=>{
 })
 
 //get book --admin
-router.get("/get-book",async(req,res)=>{
+router.get("/get-all-books",async(req,res)=>{
   try{
     const books=await Book.find().sort({createAt:-1});
     return res.json({status:"Success",data:books,});

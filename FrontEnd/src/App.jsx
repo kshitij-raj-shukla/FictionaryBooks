@@ -2,16 +2,17 @@ import React from 'react'
 import Home from "./pages/Home";
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import AllBooks from './pages/AllBooks';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/Login';
 import Cart from './pages/cart';
 import Profile from './pages/profile';
+import ViewBookDetails from './components/ViewBookDetails/ViewBookDetails';
 function App() {
   return (
     <div>
-      <Router>
+      
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -20,9 +21,10 @@ function App() {
           <Route  path="/profile" element={<Profile />} />
           <Route  path="/SignUp" element={<SignUp />} />
           <Route  path="/LogIn" element={<LogIn />} />
+          <Route path="/view-book-details/:id" element={<ViewBookDetails />}/>
         </Routes>
         <Footer />
-      </Router>
+      
     </div>
   );
 };
