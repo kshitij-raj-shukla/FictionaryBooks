@@ -7,7 +7,7 @@ const {authenticateToken}=require("./userAuth")
 router.post("/sign-up",async(req,res)=>{
     try{
         const{username,email,password,address}=req.body;
-
+        
         //username not less than 4
         if(username.length<4){
             return res.status(400).json({message: "Username should be at least 4 characters long"});
@@ -31,7 +31,7 @@ router.post("/sign-up",async(req,res)=>{
         if(password.length<8){
             return res.status(400).json({message: "Password should be at least 8 characters long"});
         }
-
+        
         const newUser =new User({
             username:username,
             email:email,
@@ -39,6 +39,7 @@ router.post("/sign-up",async(req,res)=>{
             address:address
         });
         await newUser.save();
+        console.log("hi");
         return res.status(200).json({message:"Signup Successfull"})
     }catch(error){
         res.status(500).json({message: "Internal server error"});
@@ -48,7 +49,7 @@ router.post("/sign-up",async(req,res)=>{
 //login
 router.post("/sign-in",async(req,res)=>{
     try{
-       const {username,password}=req.body;
+        const {username,password}=req.body;
 
        const existingUser=await User.findOne({username});
        if (!existingUser){

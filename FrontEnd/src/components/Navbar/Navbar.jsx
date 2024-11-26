@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { MdOutlineSegment } from "react-icons/md";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const links = [
     {
@@ -20,11 +20,11 @@ const Navbar = () => {
       link: "/profile",
     },
   ];
-  const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   // console.log(isLoggedIn);
 
-  if (isLoggedIn===false){
-    links.splice(2,2);
+  if (isLoggedIn === false) {
+    links.splice(2, 2);
   }
   const [MobileNav, setMobileNav] = useState("hidden");
   return (
@@ -41,17 +41,26 @@ const Navbar = () => {
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className="hidden md:flex gap-4">
             {links.map((items, i) => (
-              <Link to={items.link}
+              <div className='flex items-center justify-center' key={i}>
+                {items.title==="Profile" ? <Link to={items.link}
+                className='px-5 py-1 text-md pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300'
+                key={i}>
+                {items.title}
+              </Link>:<Link to={items.link}
                 className='hover:text-blue-200 transition-all duration-300'
                 key={i}>
                 {items.title}{" "}
-              </Link>
+              </Link>}
+              </div>
             ))}
           </div>
           <div className='hidden md:flex gap-4'>
-            <Link to="/LogIn" className='px-4 py-1 border border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300'>LogIn</Link>
-            <Link to="/SignUp" className='px-4 py-1 bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-800 hover:text-white transition-all duration-300'>SignUp</Link>
-
+          {isLoggedIn === false && (
+          <>
+            <Link to="/LogIn" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300`}>LogIn</Link>
+            <Link to="/SignUp" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-800 hover:text-white transition-all duration-300`}>SignUp</Link>
+          </>
+        )}
           </div>
           <button className='block md:hidden text-white text-2xl hover:text-zinc-400'
             onClick={() =>
@@ -71,14 +80,17 @@ const Navbar = () => {
               MobileNav === "hidden"
                 ? setMobileNav("block")
                 : setMobileNav("hidden")
-              }>
+            }>
             {items.title}{" "}
           </Link>
         ))}
 
-        <Link to="/LogIn" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300`}>LogIn</Link>
-        <Link to="/SignUp" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-800 hover:text-white transition-all duration-300`}>SignUp</Link>
-
+        {isLoggedIn === false && (
+          <>
+            <Link to="/LogIn" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300`}>LogIn</Link>
+            <Link to="/SignUp" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-800 hover:text-white transition-all duration-300`}>SignUp</Link>
+          </>
+        )}
       </div>
     </>
 
