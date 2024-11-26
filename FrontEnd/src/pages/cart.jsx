@@ -3,7 +3,7 @@ import Loader from '../components/Loder/Loader'
 import axios from 'axios';
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-const navigate=useNavigate();
+// const navigate=useNavigate();
 function Cart() {
   const [Cart, setCart] = useState(); 
   const [Total, setTotal] = useState(0);

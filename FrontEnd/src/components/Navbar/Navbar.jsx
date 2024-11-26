@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { MdOutlineSegment } from "react-icons/md";
 import { useSelector } from "react-redux";
+import {authActions} from "../../store/auth"
 const Navbar = () => {
   const links = [
     {
@@ -19,12 +20,22 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile",
     },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+    },
   ];
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   // console.log(isLoggedIn);
-
+  const role= useSelector((state) => state.auth.role)
   if (isLoggedIn === false) {
     links.splice(2, 2);
+  }
+  if(isLoggedIn===true&&role==="admin"){
+    links.splice(3,1)
+  }
+  if(isLoggedIn===true&&role==="user"){
+    links.splice(4,1)
   }
   const [MobileNav, setMobileNav] = useState("hidden");
   return (
@@ -42,7 +53,7 @@ const Navbar = () => {
           <div className="hidden md:flex gap-4">
             {links.map((items, i) => (
               <div className='flex items-center justify-center' key={i}>
-                {items.title === "Profile" ? <Link to={items.link}
+                {items.title === "Profile" || items.title==="Admin Profile"? <Link to={items.link}
                   className='px-5 py-1 text-md pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300'
                   key={i}>
                   {items.title}

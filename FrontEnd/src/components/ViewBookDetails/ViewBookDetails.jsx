@@ -1,5 +1,5 @@
 // import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loader from '../Loder/Loader';
@@ -10,6 +10,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { useSelector } from 'react-redux';
 const ViewBookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   // console.log(id);
   const [Data, setData] = useState({});
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -29,23 +30,29 @@ const ViewBookDetails = () => {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     bookid: id
   };
-  const handelCart = async()=>{
+  const handelCart = async () => {
     const response = await axios.put(
       "http://localhost:1000/api/v1/add-to-cart",
       {},
-      {headers}
+      { headers }
     );
     alert(response.data.message);
   };
-  const handelFavourties = async()=>{
+  const handelFavourties = async () => {
     const response = await axios.put(
       "http://localhost:1000/api/v1/add-to-favourite",
       {},
-      {headers}
+      { headers }
     );
     alert(response.data.message);
   };
-  
+
+
+  const deleteBook = async () => {
+    const response = await axios.delete("http://localhost:1000/api/v1/delete-book", { headers });
+    alert(response.data.message);
+    navigate("/all-books");
+  };
   return (
     <>
       {Data && (
@@ -72,15 +79,17 @@ const ViewBookDetails = () => {
               )}
 
 
-              {isLoggedIn==true &&role==="admin"&&(
+              {isLoggedIn == true && role === "admin" && (
                 <div className='flex flex-col md:flex-row lg:flex-col mt-4 items-center justify-between lg:justify-start lg:mt-0'>
-                <button className='bg-white rounded lg:rounded-full text-3xl p-3 text-black flex items-center justify-center' >
-                <FaRegEdit /><span className='ms-4 block lg:hidden'>Edit</span>
-                </button >
-                <button className='bg-zinc-900 mt-8 md:mt-0 rounded lg:rounded-full text-3xl p-3 lg:mt-8 text-white flex items-center justify-center'>
-                <MdDeleteOutline /><span className='ms-4 block lg:hidden'>Add tocart</span>
-                </button>
-              </div>
+                  <Link to={`/updateBook/${id}`} className='bg-white rounded lg:rounded-full text-3xl p-3 text-black flex items-center justify-center' >
+                    <FaRegEdit /><span className='ms-4 block lg:hidden'>Edit</span>
+                  </Link >
+                  <button className='bg-zinc-900 mt-8 md:mt-0 rounded lg:rounded-full text-3xl p-3 lg:mt-8 text-white flex items-center justify-center'
+                    onClick={deleteBook}
+                  >
+                    <MdDeleteOutline /><span className='ms-4 block lg:hidden'>Delete</span>
+                  </button>
+                </div>
               )}
             </div>
           </div>

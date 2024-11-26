@@ -19,7 +19,7 @@ const Favourites = () => {
   }, [FavouriteBooks]);
   return (
     <>
-    {FavouriteBooks.length===0 && (
+    {FavouriteBooks==0 && (
         <div className='text-5xl font-semibold h-[100%] text-zinc-500 flex items-center justify-center'>
         No books in Favourities
       </div>
