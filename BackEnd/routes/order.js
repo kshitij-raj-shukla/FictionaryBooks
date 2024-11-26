@@ -14,18 +14,18 @@ router.post("/place-order", authenticateToken, async (req, res) => {
       const orderDataFromDb = await neworder.save();
 
       //saving order
-      await UserActivation.findByIdAndUpdate(id, {
+      await User.findByIdAndUpdate(id, {
         $push: { orders: orderDataFromDb._id },
       });
-      await UserActivation.findByIdAndUpdate(id, {
-        $pull: { cart: orderDataFromDb._id },
+      await User.findByIdAndUpdate(id, {
+        $pull: { cart: orderData._id },
       });
     }
     return res.json({
       status: "success",
       message: "Order placed successfully",
     });
-  } catch (error) {
+  } catch (error) { 
     console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
