@@ -26,10 +26,10 @@ const Navbar = () => {
     },
   ];
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  // console.log(isLoggedIn);
+  console.log("isLoggedIn", isLoggedIn, isLoggedIn === false);
   const role= useSelector((state) => state.auth.role)
   if (isLoggedIn === false) {
-    links.splice(2, 2);
+    links.splice(2, 3);
   }
   if(isLoggedIn===true&&role==="admin"){
     links.splice(3,1)
@@ -64,12 +64,10 @@ const Navbar = () => {
                 </Link>}
               </div>
             ))}
-          </div>
-          <div className='hidden md:flex gap-4'>
             {isLoggedIn === false && (
               <>
-                <Link to="/LogIn" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300`}>LogIn</Link>
-                <Link to="/SignUp" className={`${MobileNav} px-8 py-2 mb-8 text-3xl pfont-semibold bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-800 hover:text-white transition-all duration-300`}>SignUp</Link>
+                <Link to="/LogIn" className={`px-5 py-1 text-md pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300`}>LogIn</Link>
+                <Link to="/SignUp" className={`px-5 py-1 text-md pfont-semibold border text-white border-blue-200 rounded-lg hover:bg-white hover:text-blue-800 transition-all duration-300`}>SignUp</Link>
               </>
             )}
           </div>

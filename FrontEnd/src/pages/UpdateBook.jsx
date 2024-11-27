@@ -16,7 +16,7 @@ const UpdateBook = () => {
     });
     const headers = {
         id: localStorage.getItem("id"),
-        authorization: `Bearer${localStorage.getItem("token")}`,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         bokid: id,
     };
     const change = (e) => {
@@ -49,7 +49,7 @@ const UpdateBook = () => {
                     language:""
                 });
                 alert(response.data.message);
-                navigate(`view-book-details/${id}`)
+                navigate(`../../view-book-details/${id}`)
             }
         }catch(error){
             alert(error.response.data.message);

@@ -33,7 +33,6 @@ router.post("/add-book", authenticateToken, async (req, res) => {
 //update book
 router.put("/update-book", authenticateToken, async (req, res) => {
   try {
-    
     const { bookId } = req.headers;
     await Book.findByIdAndUpdate(bookId, {
       url: req.body.url,
@@ -54,10 +53,9 @@ router.put("/update-book", authenticateToken, async (req, res) => {
 //delete book --admin
 router.delete("/delete-book",async(req,res)=>{
   try{
-    const {bookId}=req.headers;
-    await Book.findByIdAndDelete(bookId);
+    const { bookid}=req.headers;
+    await Book.findByIdAndDelete(bookid);
     return res.status(200).json({message: "Book deleted successfully"});
-
   }catch(error){
     res.status(404).json({message:"internal server error"});
   }
