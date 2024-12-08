@@ -37,6 +37,9 @@ const AllOrders = () => {
   //   setOptions
   // }
   AllOrders&&AllOrders.splice(AllOrders.length - 1,1);
+  console.log(AllOrders,AllOrders&&AllOrders.map((items,i)=>(
+    items.book
+  )));
   return (
     <>
       {!AllOrders && (

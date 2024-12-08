@@ -53,21 +53,21 @@ router.post("/sign-in",async(req,res)=>{
 
        const existingUser=await User.findOne({username});
        if (!existingUser){
-        res.status(404).json({message:"invalid credentials"});
+        return res.status(404).json({message:"invalid credentials"});
        } 
        await bcrypt.compare(password, existingUser.password,(err,data)=>{
         if(!data){
-            res.status(401).json({message:"Invalid credentials"});
+            return res.status(401).json({message:"Invalid credentials"});
         }
         else{
             const authClaims=[
                 {name:existingUser.username},
                 {role:existingUser.role},
         ]
-            const token =jwt.sign({authClaims},"books123",{
+            const token =jwt.sign({authClaims},"books123",{ 
                 expiresIn:"30d",
             })
-            res.status(200).json({
+            return res.status(200).json({
                 id: existingUser.id,
                 role:existingUser.role,
                 token:token,
