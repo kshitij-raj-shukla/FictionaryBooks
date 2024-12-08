@@ -30,15 +30,16 @@ function Cart() {
         total += items.price;
       })
       setTotal(total);
-      total = 0;
+      total = 0; 
     }
   }, [Cart])
   const PlaceOrder=async()=>{
     try{
       const response =await axios.post (`http://localhost:1000/api/v1/place-order`,
+        
         {order:Cart},{headers});
     alert(response.data.message);
-    navigate("/profile/orderHistory");
+    // navigate("/profile/orderHistory");
     }catch(error){
       console.log(error);
     }

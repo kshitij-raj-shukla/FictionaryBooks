@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 //routs 
 app.use("/api/v1",User);
-app.use("/api/v1",Books);
+app.use("/api/v1",Books); 
 app.use("/api/v1",Favourite);
 app.use("/api/v1",Cart);
 app.use("/api/v1",Order);
