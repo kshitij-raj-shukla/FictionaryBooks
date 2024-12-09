@@ -19,7 +19,7 @@ const ViewBookDetails = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `http://localhost:1000/api/v1/get-book-id/${id}`
+        `https://ficback.onrender.com/api/v1/get-book-id/${id}`
       );
       setData(response.data.data)
     };
@@ -32,7 +32,7 @@ const ViewBookDetails = () => {
   };
   const handelCart = async () => {
     const response = await axios.put(
-      "http://localhost:1000/api/v1/add-to-cart",
+      "https://ficback.onrender.com/api/v1/add-to-cart",
       {},
       { headers }
     );
@@ -40,7 +40,7 @@ const ViewBookDetails = () => {
   };
   const handelFavourties = async () => {
     const response = await axios.put(
-      "http://localhost:1000/api/v1/add-to-favourite",
+      "https://ficback.onrender.com/api/v1/add-to-favourite",
       {},
       { headers }
     );
@@ -49,7 +49,7 @@ const ViewBookDetails = () => {
 
 
   const deleteBook = async () => {
-    const response = await axios.delete("http://localhost:1000/api/v1/delete-book", { headers });
+    const response = await axios.delete("https://ficback.onrender.com/api/v1/delete-book", { headers });
     alert(response.data.message);
     navigate("/all-books");
   };

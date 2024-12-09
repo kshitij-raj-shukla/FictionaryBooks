@@ -16,14 +16,14 @@ const Setting = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get("http://localhost:1000/api/v1/get-user-information", { headers });
+      const response = await axios.get("https://ficback.onrender.com/api/v1/get-user-information", { headers });
       setProfileData(response.data);
       setValue(response.data.address);
     };
     fetch();
   }, []);
   const submitAddress = async () => {
-    const reponse=await axios.put("http://localhost:1000/api/v1/update-address",Value,{headers});
+    const reponse=await axios.put("https://ficback.onrender.com/api/v1/update-address",Value,{headers});
     alert(reponse.data.message);
   }
   return (

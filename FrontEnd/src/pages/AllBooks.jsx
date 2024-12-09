@@ -7,7 +7,7 @@ const AllBooks = () => {
   useEffect(() => {
       const fetch = async () => {
           const response = await axios.get(
-              "http://localhost:1000/api/v1/get-all-books"
+              "https://ficback.onrender.com/api/v1/get-all-books"
           ).then(response => response.data.data);
           setData(response)
       };  

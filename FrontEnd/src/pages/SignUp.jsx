@@ -20,7 +20,7 @@ const SignUp = () => {
       }
       else{
         console.log(Values)
-        const response=await axios.post("http://localhost:1000/api/v1/sign-up",Values).catch((e)=>{console.log("e:", e)});
+        const response=await axios.post("https://ficback.onrender.com/api/v1/sign-up",Values).catch((e)=>{console.log("e:", e)});
         console.log(response.data);
         navigate("/Login");
       }

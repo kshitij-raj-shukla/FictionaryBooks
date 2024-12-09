@@ -31,7 +31,7 @@ const App = () => {
       dispatch(authActions.changeRole(localStorage.getItem("role")));
     }
   }, []);
-  return (
+  return ( 
     <div>
 
       <Navbar />
@@ -42,7 +42,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} >
           {role ==="user"? <Route index element={<Favourites/>}/> : <Route index element={<AddBook/>}/> }
           {/* {role==="admin" && <Route path="/profile/add-book" index element={<AddBook/>}/>} */}
-          <Route path="/profile/orderHistory" element={<UsrOrderHistory/>} />
+          <Route path="/profile/orderHistory" element={<UsrOrderHistory/>} />     
           <Route path="/profile/settings" element={<Setting/>} />
         </Route>
         <Route path="/SignUp" element={<SignUp />} />
