@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import BookCard from '../BookCard/BookCard';
 import Loader from '../Loder/Loader';
+// import { globalData } from '../../App';
 const RecentlyAdded = () => {
     const [Data, setData] = useState();
     useEffect(() => {
         const fetch = async () => {
-            const response = await axios.get(
-                "http://localhost:1000/api/v1/get-recent-books"
+            const response = await axios.get("https://ficback.onrender.com/api/v1/get-recent-books"
             ).then(response => response.data.data);
             setData(response.slice(0, 4))
         };

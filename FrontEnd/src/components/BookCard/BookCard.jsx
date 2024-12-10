@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { globalData } from '../../App';
 
 const BookCard = ({ data, favourite }) => {
   const headers ={
@@ -10,7 +11,7 @@ const BookCard = ({ data, favourite }) => {
   };
   const handelRemoveBook = async () => {
     const response =await axios.put(
-      "http://localhost:1000/api/v1/remove-from-favourite",
+      `https://ficback.onrender.com/api/v1/remove-from-favourite`,
       {},
       {headers}
     );
