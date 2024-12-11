@@ -14,20 +14,20 @@ function Cart() {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get("http://localhost:1000/api/v1/get-user-cart", { headers });
+      const response = await axios.get("https://ficback.onrender.com/api/v1/get-user-cart", { headers });
       setCart(response.data.data);
     };
     fetch();
   }, []);
 
   const deleteItem = async (bookid) => {
-    await axios.put(`http://localhost:1000/api/v1/remove-from-cart/${bookid}`, {}, { headers });
+    await axios.put(`https://ficback.onrender.com/api/v1/remove-from-cart/${bookid}`, {}, { headers });
     alert("Book Removed successfully");
     setCart(Cart.filter(item => item._id !== bookid));
   };
 
   const clearCart = async () => {
-    await axios.put("http://localhost:1000/api/v1/clear-cart", {}, { headers });
+    await axios.put("https://ficback.onrender.com/api/v1/clear-cart", {}, { headers });
     alert("All items removed from cart successfully");
     setCart([]);
   };
@@ -44,7 +44,7 @@ function Cart() {
 
   const PlaceOrder = async () => {
     try {
-      const response = await axios.post("http://localhost:1000/api/v1/place-order", { order: Cart }, { headers });
+      const response = await axios.post("https://ficback.onrender.com/api/v1/place-order", { order: Cart }, { headers });
       alert(response.data.message);
       setCart([]); // Clear cart after placing order
     } catch (error) {
