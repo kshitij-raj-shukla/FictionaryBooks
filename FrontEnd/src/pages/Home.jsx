@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from '../components/Home/hero'
+import Hero from '../components/Home/Hero'
 import RecentlyAdded from '../components/Home/RecentlyAdded'
 
 function Home() {
